@@ -1,10 +1,7 @@
 package com.oasis.course.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -33,6 +30,8 @@ public class Course extends GenericEntity {
     @OneToMany(mappedBy = "course")
     private List<Video> videos = new ArrayList<>();
 
-    @Column
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "company_id")
     private Company company;
 }

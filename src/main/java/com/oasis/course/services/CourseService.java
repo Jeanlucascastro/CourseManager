@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 
 @Service
 public class CourseService {
@@ -63,4 +65,7 @@ public class CourseService {
         return this.courseRepository.findById(id).orElseThrow(() -> new GenericException("BC-0003"));
     }
 
+    public List<Course> findAllByCompanyId(Long companyId) {
+        return courseRepository.findAllByCompanyId(companyId);
+    }
 }

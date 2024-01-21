@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController()
 @RequestMapping(value = "/course")
@@ -79,5 +81,10 @@ public class CourseController {
         } catch (GenericException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/byCompany/{companyId}")
+    public List<Course> getCourseByCompanyId(@PathVariable Long companyId) {
+        return courseService.findAllByCompanyId(companyId);
     }
 }
